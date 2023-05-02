@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 type CounterProps = {
   title: string;
-  initValue?: Number;
+  initValue?: number;
 };
-function Counter({ title, initValue }: CounterProps) {
-  function up() {}
+function Counter({ title, initValue = 0 }: CounterProps) {
+  // const countState = useState(initValue);
+  // let count = countState[0];
+  // let setCount = countState[1];
+  const [count, setCount] = useState(initValue);
+  function up() {
+    setCount(count + 1);
+  }
   return (
     <>
       <h1>{title}</h1>
-      <button onClick={up}>+</button> {initValue}
+      <button onClick={up}>+</button> {count}
     </>
   );
 }
 function App() {
   return (
     <div>
-      <Counter title="불면증 카운터" initValue={10}></Counter>
-      <Counter title="고양이 카운터"></Counter>
-      <Counter title="Counter"></Counter>
+      <Counter title="불면증 카운터" initValue={0}></Counter>
     </div>
   );
 }
