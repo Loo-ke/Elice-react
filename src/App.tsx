@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+type CounterProps = {
+  title: string;
+  initValue?: Number;
+};
+function Counter({ title, initValue }: CounterProps) {
+  function up() {}
+  return (
+    <>
+      <h1>{title}</h1>
+      <button onClick={up}>+</button> {initValue}
+    </>
+  );
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Counter title="불면증 카운터" initValue={10}></Counter>
+      <Counter title="고양이 카운터"></Counter>
+      <Counter title="Counter"></Counter>
     </div>
   );
 }
