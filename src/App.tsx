@@ -31,7 +31,7 @@ function getCurrentTime() {
 console.log(getCurrentTime());
 
 function Counter2() {
-  const [times, setTimes] = useState([]);
+  const [times, setTimes] = useState<String[]>([]);
   console.log('component - times', times);
   function up() {
     const newTimes = [...times];
@@ -42,7 +42,11 @@ function Counter2() {
     <>
       <h1>카운터2</h1>
       <button onClick={up}>+</button>
-      <ol></ol>
+      <ol>
+        {times.map((value) => {
+          return <li>{value}</li>;
+        })}
+      </ol>
     </>
   );
 }
