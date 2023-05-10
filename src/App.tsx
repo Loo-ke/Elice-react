@@ -50,11 +50,31 @@ function Counter2() {
     </>
   );
 }
+
+function Counter3() {
+  const [count, setCount] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
+  return (
+    <>
+      <h1>Counter3</h1>
+      <input
+        type="number"
+        value={step}
+        onChange={(e) => {
+          setStep(Number(e.target.value));
+        }}
+      ></input>
+      <button onClick={() => setCount(count + step)}>+</button>
+      {count}
+    </>
+  );
+}
 function App() {
   return (
     <div>
       <Counter title="불면증 카운터" initValue={0}></Counter>
       <Counter2></Counter2>
+      <Counter3></Counter3>
     </div>
   );
 }
