@@ -43,8 +43,8 @@ function Counter2() {
       <h1>카운터2</h1>
       <button onClick={up}>+</button>
       <ol>
-        {times.map((value) => {
-          return <li>{value}</li>;
+        {times.map((value, index) => {
+          return <li key={index}>{value}</li>;
         })}
       </ol>
     </>
@@ -69,12 +69,59 @@ function Counter3() {
     </>
   );
 }
+
+type countType = {
+  time: string;
+  step: number;
+};
+function Counter4() {
+  const [step, setStep] = useState(1);
+  const [count, setCount] = useState<countType[]>([]);
+  console.log('count', count);
+  let total = 0;
+  for (let i = 0; i < count.length; i++) {
+    total = total + count[i].step;
+  }
+  return (
+    <>
+      <h1>Counter4</h1>
+      <input
+        type="number"
+        value={step}
+        onChange={(e) => {
+          setStep(Number(e.target.value));
+        }}
+      />
+      <button
+        onClick={() => {
+          const newCount = [...count];
+          newCount.push({ time: getCurrentTime(), step: step });
+          setCount(newCount);
+        }}
+      >
+        +
+      </button>
+      {total}
+      <ul>
+        {count.map((value, index) => {
+          return (
+            <li key={index}>
+              {value.time}, {value.step}
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
+}
+
 function App() {
   return (
     <div>
       <Counter title="불면증 카운터" initValue={0}></Counter>
       <Counter2></Counter2>
       <Counter3></Counter3>
+      <Counter4></Counter4>
     </div>
   );
 }
