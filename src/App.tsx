@@ -1,26 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import style from './App.module.css';
+import { Counter } from './Counter';
 
-type CounterProps = {
-  title: string;
-  initValue?: number;
-};
-function Counter({ title, initValue = 0 }: CounterProps) {
-  // const countState = useState(initValue);
-  // let count = countState[0];
-  // let setCount = countState[1];
-  const [count, setCount] = useState(initValue);
-  function up() {
-    setCount(count + 1);
-  }
-  return (
-    <div className="outline">
-      <h1>{title}</h1>
-      <button onClick={up}>+</button> {count}
-    </div>
-  );
-}
 function getCurrentTime() {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
