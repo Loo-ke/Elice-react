@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import style from './App.module.css';
+
 type CounterProps = {
   title: string;
   initValue?: number;
@@ -13,10 +15,10 @@ function Counter({ title, initValue = 0 }: CounterProps) {
     setCount(count + 1);
   }
   return (
-    <>
+    <div className="outline">
       <h1>{title}</h1>
       <button onClick={up}>+</button> {count}
-    </>
+    </div>
   );
 }
 function getCurrentTime() {
@@ -39,7 +41,7 @@ function Counter2() {
     setTimes(newTimes);
   }
   return (
-    <>
+    <div className={style.layout}>
       <h1>카운터2</h1>
       <button onClick={up}>+</button>
       <ol>
@@ -47,7 +49,7 @@ function Counter2() {
           return <li key={index}>{value}</li>;
         })}
       </ol>
-    </>
+    </div>
   );
 }
 
