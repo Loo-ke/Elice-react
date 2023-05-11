@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import style from './App.module.css';
 import { Counter } from './Counter';
+import { Container } from '@mui/material';
 
 function getCurrentTime() {
   const now = new Date();
@@ -110,12 +111,14 @@ function Counter4() {
 
 function App() {
   return (
-    <div>
-      <Counter title="불면증 카운터" initValue={0}></Counter>
-      <Counter2></Counter2>
-      <Counter3></Counter3>
-      <Counter4></Counter4>
-    </div>
+    <Container maxWidth="sm">
+      <div>
+        <Counter title="불면증 카운터" initValue={0}></Counter>
+        <Counter2></Counter2>
+        <Counter3></Counter3>
+        <Counter4></Counter4>
+      </div>
+    </Container>
   );
 }
 
