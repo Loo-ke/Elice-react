@@ -78,10 +78,11 @@ function Counter4() {
   const [step, setStep] = useState(1);
   const [count, setCount] = useState<countType[]>([]);
   console.log('count', count);
-  let total = 0;
-  for (let i = 0; i < count.length; i++) {
-    total = total + count[i].step;
-  }
+  // let total = 0;
+  // for (let i = 0; i < count.length; i++) {
+  //   total = total + count[i].step;
+  // }
+
   return (
     <>
       <h1>Counter4</h1>
@@ -101,16 +102,24 @@ function Counter4() {
       >
         +
       </button>
-      {total}
-      <ul>
+
+      <table>
+        <tr>총계</tr>
+        <td>
+          {count.reduce((acc, cur) => {
+            console.log(acc, cur);
+            return acc + cur.step;
+          }, 0)}
+        </td>
         {count.map((value, index) => {
           return (
-            <li key={index}>
-              {value.time}, {value.step}
-            </li>
+            <tr key={index}>
+              <td>{value.time}</td>
+              <td>{value.step}</td>
+            </tr>
           );
         })}
-      </ul>
+      </table>
     </>
   );
 }
