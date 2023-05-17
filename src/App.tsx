@@ -1,8 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+
+function Counter3() {
+  const [count, setCount] = useState(0);
+  //fetch from http://localhost:9999/counter
+  fetch("http://localhost:9999/counter")
+    .then((resp) => resp.json())
+    .then((result) => {
+      console.log(result);
+      setCount(result.value);
+    });
+
+  return (
+    <div style={{ border: "10px solid gray", padding: 20 }}>
+      <h1>Counter - Ajax & useEffect</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        +
+      </button>{" "}
+      {count}
+    </div>
+  );
+}
 
 type countItemType = {
   time: string;
@@ -86,17 +115,28 @@ function Counter2() {
         Run
       </Button>
 
-      <div style={{ display: open ? "block" : "none" }}>
-        <h2>Dialog Counter</h2>
-        <button>+</button> 0
-        <Button
-          onClick={() => {
-            setOpen(false);
-          }}
-        >
-          close
-        </Button>
-      </div>
+      <Dialog
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
+        <DialogTitle>Dialog Title</DialogTitle>
+        <DialogContent>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+          <button>+</button> 0
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
@@ -104,6 +144,9 @@ function App() {
   return (
     <Container>
       <Grid container spacing={1}>
+        <Grid item xs={12} sm={6} md={4}>
+          <Counter3></Counter3>
+        </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <Counter2></Counter2>
         </Grid>
