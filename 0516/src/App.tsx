@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { blue, grey, red } from "@mui/material/colors";
 import { ContextAPI } from "./ContextAPI";
+import { MyUseReduce } from "./MyUseReduce";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,7 +31,11 @@ function App() {
         <Button variant="contained" style={{ marginBottom: 10 }}>
           LOGIN
         </Button>
+
         <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <MyUseReduce />
+          </Grid>
           <Grid item xs={12} sm={6}>
             <ContextAPI />
           </Grid>
@@ -47,5 +52,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;
