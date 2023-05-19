@@ -4,11 +4,15 @@ import "./App.css";
 function Counter4UseEffect() {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    setInterval(() => {
+    const id = setInterval(() => {
       // setCount(count + 1);
       setCount((oldCount) => oldCount + 1);
       console.log("count2", count);
     }, 1000);
+    return () => {
+      console.log("unmount");
+      clearInterval(id);
+    };
   }, []);
   return (
     <div>
