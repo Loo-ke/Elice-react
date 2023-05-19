@@ -1,57 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
+import { Counter4UseEffect } from "./Counter4UseEffect";
+import { Counter } from "./Counter";
+import { Container, Grid } from "@mui/material";
 
-function Counter4UseEffect() {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => {
-      // setCount(count + 1);
-      setCount((oldCount) => oldCount + 1);
-      console.log("count2", count);
-    }, 1000);
-    return () => {
-      console.log("unmount");
-      clearInterval(id);
-    };
-  }, []);
-  return (
-    <div>
-      <h1>useEffect, setInterval</h1>
-      {count}
-    </div>
-  );
-}
-
-function Counter() {
-  const [count, setCount] = useState(0);
-  const [step, setStep] = useState(1);
-  return (
-    <div>
-      <h1>Counter</h1>
-      <input
-        type="text"
-        value={step}
-        onChange={(e) => {
-          setStep(Number(e.target.value));
-        }}
-      />
-      <button
-        onClick={() => {
-          setCount(count + step);
-        }}
-      >
-        +
-      </button>
-      {count}
-    </div>
-  );
-}
 function App() {
   return (
-    <div>
-      <Counter4UseEffect />
-      <Counter />
-    </div>
+    <Container maxWidth="md">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Counter4UseEffect />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Counter />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
